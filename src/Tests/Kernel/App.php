@@ -1,6 +1,6 @@
 <?php
 
-namespace DIMicroKernel\Tests\Symfony\Kernel;
+namespace DIMicroKernel\Tests\Kernel;
 
 /**
  * @author Michael Mayer <michael@lastzero.net>

@@ -1,5 +1,5 @@
-A versatile DI micro-kernel for PHP applications
-================================================
+A micro-kernel for PHP applications
+===================================
 
 [![Build Status](https://travis-ci.org/lastzero/di-microkernel.png?branch=master)](https://travis-ci.org/lastzero/di-microkernel)
 [![Latest Stable Version](https://poser.pugx.org/lastzero/di-microkernel/v/stable.svg)](https://packagist.org/packages/lastzero/di-microkernel)
@@ -9,12 +9,13 @@ A versatile DI micro-kernel for PHP applications
 *Note: To see a complete framework based on the micro-kernel please go to https://github.com/lastzero/symlex*
 
 This library contains a micro-kernel for bootstrapping almost any PHP application, including **Silex**, 
-**Symfony Console** and **Lumen**.
-It's just about 300 lines of code, initializes the Symfony service container and then starts the app by calling `run()`:
+**Symfony Console** and **Lumen**. It's just about 300 lines of code, initializes the Symfony service container using YAML files and then starts 
+the app by calling `run()`:
 
 ```php
 <?php
-namespace DIMicroKernel\Symfony;
+
+namespace DIMicroKernel;
 
 class Kernel
 {
@@ -49,14 +50,15 @@ class Kernel
     public function run()
     {
         $arguments = func_get_args();
-        $application = $this->getApplication();
-
-        return call_user_func_array(array($application, 'run'), $arguments);
+        
+        return $this->__call('run', $arguments);
     }
 }
 ```
 
-YAML files located in `config/` configure the entire system via dependecy injection. The filename matches the application's environment name (e.g. `console.yml`). These files are in the same format you know from Symfony. In addition to the regular services, they also contain the actual application as a service ("app"):
+YAML files located in `config/` configure the entire system via dependecy injection. The filename matches the 
+application's environment name (e.g. `config/console.yml`). These files are in the same format you know from 
+Symfony. In addition to the regular services, they also contain the actual application as a service ("app"):
 
 ```yaml
 services:
@@ -65,14 +67,15 @@ services:
 ```
 
 This provides a uniform approach for bootstrapping Web applications like `Silex\Application` or command-line 
-applications like `Symfony\Component\Console\Application` using the same kernel.
+applications like `Symfony\Component\Console\Application` using the same kernel. The result is much cleaner and 
+leaner than the usual bootstrap and configuration madness you know from most frameworks.
 
 The kernel base class can be extended to customize it for a specific purpose:
 
 ```php
 <?php
 
-use DIMicroKernel\Symfony\Kernel;
+use DIMicroKernel\Kernel;
 
 class ConsoleKernel extends Kernel
 {

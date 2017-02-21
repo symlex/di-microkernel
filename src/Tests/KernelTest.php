@@ -1,9 +1,9 @@
 <?php
 
-namespace DIMicroKernel\Tests\Symfony;
+namespace DIMicroKernel\Tests;
 
 use TestTools\TestCase\UnitTestCase;
-use DIMicroKernel\Symfony\Kernel;
+use DIMicroKernel\Kernel;
 
 /**
  * @author Michael Mayer <michael@lastzero.net>

@@ -1,5 +1,4 @@
 parameters:
-    container.cache: false
     twig.path:
         - 'foo/bar'
     twig.options:
@@ -8,4 +7,4 @@ parameters:
 
 services:
     app:
-        class: DIMicroKernel\Tests\Symfony\Kernel\App
+        class: DIMicroKernel\Tests\Kernel\App
