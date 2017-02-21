@@ -8,8 +8,8 @@ A versatile DI micro-kernel for PHP applications
 
 *Note: To see a complete framework based on the micro-kernel please go to https://github.com/lastzero/symlex*
 
-This library contains a micro-kernel that is able to bootstrap almost any PHP application, 
-including **Silex**, **Symfony Console** or **Lumen**.
+This library contains a micro-kernel that for bootstrapping almost any PHP application, 
+including **Silex**, **Symfony Console** and **Lumen**.
 It's just about 300 lines of code, initializes the Symfony service container and then starts the app by calling `run()`:
 
 ```php
