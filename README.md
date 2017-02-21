@@ -56,11 +56,13 @@ class Kernel
 }
 ```
 
-YAML files located in `$appPath/config/` configure the entire system via dependecy injection. The filename matches the application's environment name (e.g. `console.yml`). These files are in the same format you know from Symfony. In addition to the regular services, they also contain the actual application as a service ("app"):
+YAML files located in `config/` configure the entire system via dependecy injection. The filename matches the application's environment name (e.g. `console.yml`). These files are in the same format you know from Symfony. In addition to the regular services, they also contain the actual application as a service ("app"):
 
-    services:
-        app:
-            class: Symfony\Component\Console\Application
+```yaml
+services:
+    app:
+        class: Symfony\Component\Console\Application
+```
 
 This provides a uniform approach for bootstrapping Web applications like `Silex\Application` or command-line 
 applications like `Symfony\Component\Console\Application` using the same kernel.
