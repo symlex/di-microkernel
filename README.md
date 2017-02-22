@@ -15,7 +15,7 @@ your application and create a service container instance with that.
 YAML files located in `config/` configure the application and all of it's dependencies as a service. The filename matches 
 the application's environment name (e.g. `config/console.yml`). The configuration can additionally be modified 
 for sub environments such as local or production by providing a matching config file like `config/console.local.yml`
-(see `app.sub_environment` parameter). These files are in the same well documented format you might know from Symfony:
+(see `app.sub_environment` parameter). These files are in the same [well documented](https://symfony.com/doc/current/components/dependency_injection.html) format you might know from Symfony:
 
 ```yaml
 parameters:
