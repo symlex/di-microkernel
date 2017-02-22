@@ -118,12 +118,12 @@ The kernel sets a number of default parameters that can be used for configuring 
 
 Parameter           | Getter method         | Setter method         | Default value            
 --------------------|-----------------------|-----------------------|------------------
-app.name            | getName()             | setName($value)       | "App"
-app.version         | getVersion()          | setVersion($value)    | "1.0"
-app.environment     | getEnvironment        |                       | "app"
-app.sub_environment | getSubEnvironment()   |                       | "local"
+app.name            | getName()             | setName($value)       | App
+app.version         | getVersion()          | setVersion($value)    | 1.0
+app.environment     | getEnvironment()      |                       | app
+app.sub_environment | getSubEnvironment()   |                       | local
 app.debug           |                       |                       | false
-app.charset         | getCharset()          | setCharset($value)    | "UTF-8"
+app.charset         | getCharset()          | setCharset($value)    | UTF-8
 app.path            | getAppPath()          | setAppPath($value)    | ./
 app.config_path     | getConfigPath()       | setConfigPath($value) | ./config
 app.base_path       | getBasePath()         | setBasePath($value)   | ../
