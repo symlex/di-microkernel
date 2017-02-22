@@ -9,12 +9,13 @@ A micro-kernel for PHP applications
 *Note: To see a complete framework based on the micro-kernel please go to https://github.com/lastzero/symlex*
 
 This library contains a micro-kernel for bootstrapping almost any PHP application, including Silex, 
-Symfony Console and Lumen.
+Symfony Console and Lumen. The kernel itself is just about 400 lines of code to set a bunch of default parameters for
+your application and create a service container instance with that.
 
 YAML files located in `config/` configure the application and all of it's dependencies as a service. The filename matches 
 the application's environment name (e.g. `config/console.yml`). The configuration can additionally be modified 
 for sub environments such as local or production by providing a matching config file like `config/console.local.yml`
-(see `app.sub_environment` parameter). These files are in the same format you might know from Symfony:
+(see `app.sub_environment` parameter). These files are in the same well documented format you might know from Symfony:
 
 ```yaml
 parameters:
