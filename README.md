@@ -9,8 +9,8 @@ A micro-kernel for PHP applications
 *Note: To see a complete framework based on the micro-kernel please go to https://github.com/lastzero/symlex*
 
 This library contains a micro-kernel for bootstrapping almost any PHP application, including **Silex**, 
-**Symfony Console** and **Lumen**. It's just about 300 lines of code, initializes the Symfony service container using YAML files and then starts 
-the app by calling `run()`:
+**Symfony Console** and **Lumen**. It's just about 300 lines of code, initializes the Symfony service container 
+using YAML files and then starts the app by calling `run()`:
 
 ```php
 <?php
@@ -28,30 +28,22 @@ class Kernel
         $this->environment = $environment;
         $this->debug = $debug;
         $this->appPath = $appPath;
-
-        $this->init();
     }
     
     ...
     
     public function getApplication()
     {
-        if($this->appIsUninitialized()) {
-            $this->setUp();
-        }
-
         $result = $this->getContainer()->get('app');
-
-        $this->appInitialized = true;
 
         return $result;
     }
     
     public function run()
     {
-        $arguments = func_get_args();
-        
-        return $this->__call('run', $arguments);
+        $application = $this->getApplication();
+
+        return call_user_func_array(array($application, 'run'), func_get_args());
     }
 }
 ```
