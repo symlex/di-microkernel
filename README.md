@@ -20,14 +20,14 @@ namespace DIMicroKernel;
 class Kernel
 {
     protected $environment;
-    protected $debug;
     protected $appPath;
+    protected $debug;
 
-    public function __construct($environment = 'app', $appPath = '', $debug = false)
+    public function __construct(string $environment = 'app', string $appPath = '', bool $debug = false)
     {
         $this->environment = $environment;
-        $this->debug = $debug;
         $this->appPath = $appPath;
+        $this->debug = $debug;
     }
     
     ...
