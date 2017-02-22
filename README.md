@@ -22,8 +22,9 @@ class Kernel
     protected $environment;
     protected $appPath;
     protected $debug;
+    protected $container;
 
-    public function __construct(string $environment = 'app', string $appPath = '', bool $debug = false)
+    public function __construct(string $environment, string $appPath, bool $debug)
     {
         $this->environment = $environment;
         $this->appPath = $appPath;
@@ -31,6 +32,15 @@ class Kernel
     }
     
     ...
+    
+    public function getContainer()
+    {
+        if (!$this->container) {
+            $this->boot();
+        }
+        
+        return $this->container;
+    }
     
     public function getApplication()
     {
