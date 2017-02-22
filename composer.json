@@ -1,6 +1,6 @@
 {
     "name": "lastzero/di-microkernel",
-    "description": "A micro-kernel for bootstrapping almost any PHP application",
+    "description": "A micro-kernel based on the Symfony service container for bootstrapping almost any PHP application",
     "type": "library",
     "keywords": [
         "silex",
