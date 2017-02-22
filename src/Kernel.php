@@ -319,7 +319,7 @@ class Kernel
         return array(
             'app.name' => $this->getName(),
             'app.version' => $this->getVersion(),
-            'app.environment' => $this->environment,
+            'app.environment' => $this->getEnvironment(),
             'app.sub_environment' => $this->getSubEnvironment(),
             'app.debug' => $this->debug,
             'app.charset' => $this->getCharset(),
