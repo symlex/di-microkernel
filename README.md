@@ -99,7 +99,7 @@ class ConsoleKernel extends Kernel
 }
 ```
 
-Creating a kernel instance and calling run() is enough to start an application:
+Creating a kernel instance and calling run() is enough to start your application:
 
 ```php
 #!/usr/bin/env php
@@ -111,11 +111,44 @@ $app = new ConsoleKernel ('console', __DIR__, false);
 $app->run();
 ```
 
-**Caching**
+Default parameters
+------------------
 
-If debug mode is turned off, the service container configuration is cached by the kernel. You have to delete all cache files after updating the configuration. To disable caching completely, add `container.cache: false` to your configuration parameters: 
+The kernel sets a number of default parameters that can be used for configuring services. The default values can be changed via setter methods of the kernel or overwritten by the container config files.
+
+Parameter           | Getter method         | Setter method         | Default value            
+--------------------|-----------------------|-----------------------|------------------
+app.name            | getName()             | setName($value)       | "App"
+app.version         | getVersion()          | setVersion($value)    | "1.0"
+app.environment     | getEnvironment        |                       | "app"
+app.sub_environment | getSubEnvironment()   |                       | "local"
+app.debug           |                       |                       | false
+app.charset         | getCharset()          | setCharset($value)    | "UTF-8"
+app.path            | getAppPath()          | setAppPath($value)    | ./
+app.config_path     | getConfigPath()       | setConfigPath($value) | ./config
+app.base_path       | getBasePath()         | setBasePath($value)   | ../
+app.storage_path    | getStoragePath()      | setStoragePath($value)| ../storage
+app.cache_path      | getCachePath()        | setCachePath($value)  | ../storage/cache
+app.log_path        | getLogPath()          | setLogPath($value)    | ../storage/log
+app.src_path        | getSrcPath()          | setSrcPath($value)    | ../src
+
+Caching
+-------
+
+If debug mode is turned off, the service container configuration is cached by the kernel in the directory set as cache path. You have to delete all cache files after updating the configuration. To disable caching completely, add `container.cache: false` to your configuration parameters: 
 
 ```yaml
 parameters:
     container.cache: false
+```
+
+Composer
+--------
+
+If you are using composer, simply add "lastzero/di-microkernel" to your composer.json file and run composer update:
+
+```json
+"require": {
+    "lastzero/di-microkernel": "^1.0"
+}
 ```
