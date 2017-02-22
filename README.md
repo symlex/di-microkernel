@@ -68,9 +68,14 @@ parameters:
     app.version: '1.0'
 
 services:
+    doctrine.migrations.migrate:
+        class: Doctrine\DBAL\Migrations\Tools\Console\Command\MigrateCommand
+        
     app:
         class: Symfony\Component\Console\Application
         arguments: [%app.name%, %app.version%]
+        calls:
+            - [ add, [ "@doctrine.migrations.migrate" ] ]
 ```
 
 This provides a uniform approach for bootstrapping Web applications like `Silex\Application` or command-line 
