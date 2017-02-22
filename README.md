@@ -8,52 +8,8 @@ A micro-kernel for PHP applications
 
 *Note: To see a complete framework based on the micro-kernel please go to https://github.com/lastzero/symlex*
 
-This library contains a micro-kernel for bootstrapping almost any PHP application, including **Silex**, 
-**Symfony Console** and **Lumen**. It's just about 400 lines of code, initializes the Symfony service container 
-using YAML files and then starts the app by calling `run()`:
-
-```php
-<?php
-
-namespace DIMicroKernel;
-
-class Kernel
-{
-    protected $container;
-
-    public function __construct(string $environment, string $appPath, bool $debug)
-    {
-        $this->setEnvironment($environment);
-        $this->setAppPath($appPath);
-        $this->setDebug($debug);
-    }
-    
-    ...
-    
-    public function getContainer()
-    {
-        if (!$this->container) {
-            $this->boot();
-        }
-        
-        return $this->container;
-    }
-    
-    public function getApplication()
-    {
-        $result = $this->getContainer()->get('app');
-
-        return $result;
-    }
-    
-    public function run()
-    {
-        $application = $this->getApplication();
-
-        return call_user_func_array(array($application, 'run'), func_get_args());
-    }
-}
-```
+This library contains a micro-kernel for bootstrapping almost any PHP application, including Silex, 
+Symfony Console and Lumen.
 
 YAML files located in `config/` configure the application and all of it's dependencies as a service. The filename matches 
 the application's environment name (e.g. `config/console.yml`). The configuration can additionally be modified 
@@ -80,7 +36,7 @@ This provides a uniform approach for bootstrapping Web applications like `Silex\
 applications like `Symfony\Component\Console\Application` using the same kernel. The result is much cleaner and 
 leaner than the usual bootstrap and configuration madness you know from many frameworks.
 
-The kernel base class can be extended to customize it for a specific purpose:
+The kernel base class can be extended to customize it for a specific purpose such as long running console applications:
 
 ```php
 <?php
@@ -102,7 +58,7 @@ class ConsoleKernel extends Kernel
 }
 ```
 
-Creating a kernel instance and calling run() is enough to start your application:
+Creating a kernel instance and calling `run()` is enough to start your application:
 
 ```php
 #!/usr/bin/env php
