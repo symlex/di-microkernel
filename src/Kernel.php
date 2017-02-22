@@ -25,10 +25,18 @@ use DIMicroKernel\Exception\Exception;
 class Kernel
 {
     /**
-     * @var \Symfony\Component\DependencyInjection\ContainerBuilder
+     * @var Container
      */
     protected $container;
+
     protected $environment;
+    protected $defaultSubEnvironment = 'local';
+
+    protected $debug = false;
+    protected $name;
+    protected $version = '1.0';
+    protected $appInitialized = false;
+
     protected $appPath;
     protected $basePath;
     protected $storagePath;
@@ -37,10 +45,6 @@ class Kernel
     protected $logPath;
     protected $cachePath;
     protected $charSet;
-    protected $debug;
-    protected $name;
-    protected $version = '1.0';
-    protected $appInitialized = false;
 
     /**
      * Kernel constructor.
@@ -49,11 +53,11 @@ class Kernel
      * @param string $appPath e.g. __DIR__
      * @param bool $debug service container is not cached, if true
      */
-    public function __construct($environment = 'app', $appPath = '', $debug = false)
+    public function __construct(string $environment = 'app', string $appPath = '', bool $debug = false)
     {
-        $this->environment = $environment;
-        $this->debug = $debug;
-        $this->appPath = $appPath;
+        $this->setEnvironment($environment);
+        $this->setAppPath($appPath);
+        $this->setDebug($debug);
 
         $this->init();
     }
@@ -73,10 +77,10 @@ class Kernel
     /**
      * Returns the container instance (automatically creates an instance, if none exists)
      *
-     * @return ContainerBuilder
+     * @return Container
      * @throws ContainerNotFoundException
      */
-    public function getContainer()
+    public function getContainer(): Container
     {
         if (!$this->container) {
             $this->boot();
@@ -95,6 +99,21 @@ class Kernel
     }
 
     /**
+     * Returns true, if kernel is in debug mode
+     *
+     * @return bool
+     */
+    public function isDebug(): bool
+    {
+        return $this->debug;
+    }
+
+    public function setDebug(bool $debug)
+    {
+        $this->debug = $debug;
+    }
+
+    /**
      * Returns application name, e.g. App
      *
      * @return string
@@ -102,7 +121,7 @@ class Kernel
     public function getName(): string
     {
         if (null === $this->name) {
-            $this->name = ucfirst(preg_replace('/[^a-zA-Z0-9_]+/', '', basename($this->getAppPath())));
+            $this->setName(ucfirst(preg_replace('/[^a-zA-Z0-9_]+/', '', basename($this->getAppPath()))));
         }
 
         return $this->name;
@@ -138,6 +157,11 @@ class Kernel
         return $this->environment;
     }
 
+    public function setEnvironment(string $environment)
+    {
+        $this->environment = $environment;
+    }
+
     /**
      * Returns sub environment name, e.g. local, test, production,...
      *
@@ -147,13 +171,18 @@ class Kernel
      */
     public function getSubEnvironment(): string
     {
-        $result = 'local';
+        $result = $this->defaultSubEnvironment;
 
         if ($this->container && $this->container->hasParameter('app.sub_environment')) {
             $result = (string)$this->container->getParameter('app.sub_environment');
         }
 
         return $result;
+    }
+
+    public function setSubEnvironment(string $subEnvironment)
+    {
+        $this->defaultSubEnvironment = $subEnvironment;
     }
 
     /**
@@ -321,15 +350,15 @@ class Kernel
             'app.version' => $this->getVersion(),
             'app.environment' => $this->getEnvironment(),
             'app.sub_environment' => $this->getSubEnvironment(),
-            'app.debug' => $this->debug,
+            'app.debug' => $this->isDebug(),
             'app.charset' => $this->getCharset(),
             'app.path' => $this->getAppPath(),
+            'app.config_path' => $this->getConfigPath(),
             'app.base_path' => $this->getBasePath(),
             'app.storage_path' => $this->getStoragePath(),
-            'app.src_path' => $this->getSrcPath(),
-            'app.cache_path' => $this->getCachePath(),
             'app.log_path' => $this->getLogPath(),
-            'app.config_path' => $this->getConfigPath(),
+            'app.cache_path' => $this->getCachePath(),
+            'app.src_path' => $this->getSrcPath(),
         );
     }
 

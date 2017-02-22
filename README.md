@@ -9,7 +9,7 @@ A micro-kernel for PHP applications
 *Note: To see a complete framework based on the micro-kernel please go to https://github.com/lastzero/symlex*
 
 This library contains a micro-kernel for bootstrapping almost any PHP application, including **Silex**, 
-**Symfony Console** and **Lumen**. It's just about 300 lines of code, initializes the Symfony service container 
+**Symfony Console** and **Lumen**. It's just about 400 lines of code, initializes the Symfony service container 
 using YAML files and then starts the app by calling `run()`:
 
 ```php
@@ -19,16 +19,13 @@ namespace DIMicroKernel;
 
 class Kernel
 {
-    protected $environment;
-    protected $appPath;
-    protected $debug;
     protected $container;
 
     public function __construct(string $environment, string $appPath, bool $debug)
     {
-        $this->environment = $environment;
-        $this->appPath = $appPath;
-        $this->debug = $debug;
+        $this->setEnvironment($environment);
+        $this->setAppPath($appPath);
+        $this->setDebug($debug);
     }
     
     ...
@@ -58,9 +55,10 @@ class Kernel
 }
 ```
 
-YAML files located in `config/` configure the entire system via dependecy injection. The filename matches the 
-application's environment name (e.g. `config/console.yml`). These files are in the same format you know from 
-Symfony. In addition to the regular services, they also contain the actual application as a service ("app"):
+YAML files located in `config/` configure the application and all of it's dependencies as a service. The filename matches 
+the application's environment name (e.g. `config/console.yml`). The configuration can additionally be modified 
+for sub environments such as local or production by providing a matching config file like `config/console.local.yml`
+(see `app.sub_environment` parameter). These files are in the same format you might know from Symfony:
 
 ```yaml
 parameters:
@@ -80,7 +78,7 @@ services:
 
 This provides a uniform approach for bootstrapping Web applications like `Silex\Application` or command-line 
 applications like `Symfony\Component\Console\Application` using the same kernel. The result is much cleaner and 
-leaner than the usual bootstrap and configuration madness you know from most frameworks.
+leaner than the usual bootstrap and configuration madness you know from many frameworks.
 
 The kernel base class can be extended to customize it for a specific purpose:
 
@@ -113,6 +111,7 @@ Creating a kernel instance and calling run() is enough to start your application
 require_once 'vendor/autoload.php';
 
 $app = new ConsoleKernel ('console', __DIR__, false);
+
 $app->run();
 ```
 
@@ -123,19 +122,19 @@ The kernel sets a number of default parameters that can be used for configuring 
 
 Parameter           | Getter method         | Setter method         | Default value            
 --------------------|-----------------------|-----------------------|------------------
-app.name            | getName()             | setName($value)       | App
-app.version         | getVersion()          | setVersion($value)    | 1.0
-app.environment     | getEnvironment()      |                       | app
-app.sub_environment | getSubEnvironment()   |                       | local
-app.debug           |                       |                       | false
-app.charset         | getCharset()          | setCharset($value)    | UTF-8
-app.path            | getAppPath()          | setAppPath($value)    | ./
-app.config_path     | getConfigPath()       | setConfigPath($value) | ./config
-app.base_path       | getBasePath()         | setBasePath($value)   | ../
-app.storage_path    | getStoragePath()      | setStoragePath($value)| ../storage
-app.cache_path      | getCachePath()        | setCachePath($value)  | ../storage/cache
-app.log_path        | getLogPath()          | setLogPath($value)    | ../storage/log
-app.src_path        | getSrcPath()          | setSrcPath($value)    | ../src
+app.name            | getName()             | setName()             | 'Kernel'
+app.version         | getVersion()          | setVersion()          | '1.0'
+app.environment     | getEnvironment()      | setEnvironment()      | 'app'
+app.sub_environment | getSubEnvironment()   | setSubEnvironment()   | 'local'
+app.debug           | isDebug()             | setDebug()            | false
+app.charset         | getCharset()          | setCharset()          | 'UTF-8'
+app.path            | getAppPath()          | setAppPath()          | './'
+app.config_path     | getConfigPath()       | setConfigPath()       | './config'
+app.base_path       | getBasePath()         | setBasePath()         | '../'
+app.storage_path    | getStoragePath()      | setStoragePath()      | '../storage'
+app.log_path        | getLogPath()          | setLogPath()          | '../storage/log'
+app.cache_path      | getCachePath()        | setCachePath()        | '../storage/cache'
+app.src_path        | getSrcPath()          | setSrcPath()          | '../src'
 
 Caching
 -------

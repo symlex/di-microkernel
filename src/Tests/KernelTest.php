@@ -51,6 +51,12 @@ class KernelTest extends UnitTestCase
         $this->assertEquals('UTF-8', $result);
     }
 
+    public function testIsDebug()
+    {
+        $result = $this->kernel->isDebug();
+        $this->assertTrue($result);
+    }
+
     public function testGetAppParameters()
     {
         $result = $this->kernel->getAppParameters();
