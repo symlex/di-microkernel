@@ -61,9 +61,14 @@ application's environment name (e.g. `config/console.yml`). These files are in t
 Symfony. In addition to the regular services, they also contain the actual application as a service ("app"):
 
 ```yaml
+parameters:
+    app.name: 'My App'
+    app.version: '1.0'
+
 services:
     app:
         class: Symfony\Component\Console\Application
+        arguments: [%app.name%, %app.version%]
 ```
 
 This provides a uniform approach for bootstrapping Web applications like `Silex\Application` or command-line 
