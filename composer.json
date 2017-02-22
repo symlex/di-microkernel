@@ -1,6 +1,6 @@
 {
     "name": "lastzero/di-microkernel",
-    "description": "A versatile DI micro-kernel for PHP applications",
+    "description": "A micro-kernel for bootstrapping almost any PHP application",
     "type": "library",
     "keywords": [
         "silex",
