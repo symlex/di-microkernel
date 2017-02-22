@@ -44,7 +44,7 @@ The kernel base class can be extended to customize it for a specific purpose suc
 
 use DIMicroKernel\Kernel;
 
-class ConsoleKernel extends Kernel
+class ConsoleApp extends Kernel
 {
     public function __construct($appPath, $debug = false)
     {
@@ -67,7 +67,7 @@ Creating a kernel instance and calling `run()` is enough to start your applicati
 
 require_once 'vendor/autoload.php';
 
-$app = new ConsoleKernel ('console', __DIR__, false);
+$app = new ConsoleApp ('console', __DIR__, false);
 
 $app->run();
 ```
