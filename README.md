@@ -16,11 +16,11 @@ Creating a kernel instance and calling `run()` is enough to start your applicati
 #!/usr/bin/env php
 <?php
 
-require_once 'vendor/autoload.php';
+require_once 'vendor/autoload.php'; // Composer
 
 $app = new \DIMicroKernel\Kernel('console');
 
-$app->run();
+$app->run(); // runs the 'app' service defined in config/console.yml
 ```
 
 Configuration
