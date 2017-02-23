@@ -18,7 +18,7 @@ Creating a kernel instance and calling `run()` is enough to start your applicati
 
 require_once 'vendor/autoload.php';
 
-$app = new \DIMicroKernel\Kernel('console', __DIR__, false);
+$app = new \DIMicroKernel\Kernel('console');
 
 $app->run();
 ```
