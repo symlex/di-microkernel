@@ -10,6 +10,22 @@ This library contains a micro-kernel for bootstrapping almost any PHP applicatio
 Symfony Console and Lumen. The kernel itself is just about 400 lines of code to set a bunch of default parameters for
 your application and create a service container instance with that. To see a complete framework based on the micro-kernel please go to https://github.com/lastzero/symlex.
 
+Creating a kernel instance and calling `run()` is enough to start your application:
+
+```php
+#!/usr/bin/env php
+<?php
+
+require_once 'vendor/autoload.php';
+
+$app = new \DIMicroKernel\Kernel('console', __DIR__, false);
+
+$app->run();
+```
+
+Configuration
+-------------
+
 YAML files located in `config/` configure the application and all of it's dependencies as a service. The filename matches 
 the application's environment name (e.g. `config/console.yml`). The configuration can additionally be modified 
 for sub environments such as local or production by providing a matching config file like `config/console.local.yml`
@@ -55,19 +71,6 @@ class ConsoleApp extends Kernel
         ini_set('memory_limit', '-1');
     }
 }
-```
-
-Creating a kernel instance and calling `run()` is enough to start your application:
-
-```php
-#!/usr/bin/env php
-<?php
-
-require_once 'vendor/autoload.php';
-
-$app = new ConsoleApp ('console', __DIR__, false);
-
-$app->run();
 ```
 
 Default parameters
