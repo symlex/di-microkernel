@@ -25,7 +25,7 @@ use DIMicroKernel\Exception\Exception;
 class Kernel
 {
     /**
-     * @var Container
+     * @var ContainerBuilder
      */
     protected $container;
 
