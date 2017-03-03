@@ -270,7 +270,7 @@ class Kernel
     public function getStoragePath(): string
     {
         if ($this->storagePath == '') {
-            $this->setStoragePath(realpath($this->getBasePath() . '/storage'));
+            $this->setStoragePath($this->getBasePath() . '/storage');
         }
 
         return $this->storagePath;
@@ -289,7 +289,7 @@ class Kernel
     public function getLogPath(): string
     {
         if ($this->logPath == '') {
-            $this->setLogPath(realpath($this->getStoragePath() . '/log'));
+            $this->setLogPath($this->getStoragePath() . '/log');
         }
 
         return $this->logPath;
@@ -308,7 +308,7 @@ class Kernel
     public function getCachePath(): string
     {
         if ($this->cachePath == '') {
-            $this->setCachePath(realpath($this->getStoragePath() . '/cache'));
+            $this->setCachePath($this->getStoragePath() . '/cache');
         }
 
         return $this->cachePath;
@@ -327,7 +327,7 @@ class Kernel
     public function getSrcPath(): string
     {
         if ($this->srcPath == '') {
-            $this->setSrcPath(realpath($this->getBasePath() . '/src'));
+            $this->setSrcPath($this->getBasePath() . '/src');
         }
 
         return $this->srcPath;
