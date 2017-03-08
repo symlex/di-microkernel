@@ -6,7 +6,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
+use Symfony\Component\DependencyInjection\ParameterBag\EnvPlaceholderParameterBag;
 use Symfony\Component\DependencyInjection\Dumper\PhpDumper;
 use ProjectServiceContainer as CachedContainer;
 use DIMicroKernel\Exception\ContainerNotFoundException;
@@ -343,9 +343,9 @@ class Kernel
      *
      * @return array
      */
-    public function getAppParameters(): array
+    public function getContainerParameters(): array
     {
-        return array(
+        $result = array(
             'app.name' => $this->getName(),
             'app.version' => $this->getVersion(),
             'app.environment' => $this->getEnvironment(),
@@ -360,6 +360,33 @@ class Kernel
             'app.cache_path' => $this->getCachePath(),
             'app.src_path' => $this->getSrcPath(),
         );
+
+        $result = array_merge($result, $this->getEnvParameters());
+
+        return $result;
+    }
+
+    /**
+     * Returns the environment parameters
+     *
+     * Only the parameters starting with "{ENVIRONMENT}__" are considered.
+     *
+     * @return array An array of parameters
+     */
+    protected function getEnvParameters()
+    {
+        $result = array();
+
+        $prefix = strtoupper($this->getEnvironment()) . '__';
+        $prefixLength = strlen($prefix);
+
+        foreach ($_SERVER as $key => $value) {
+            if (0 === strpos($key, $prefix)) {
+                $result[strtolower(str_replace('__', '.', substr($key, $prefixLength)))] = $value;
+            }
+        }
+
+        return $result;
     }
 
     /**
@@ -435,7 +462,7 @@ class Kernel
         if ($this->hasBooted()) return; // Nothing to do
 
         if ($this->debug) {
-            $this->setContainer(new ContainerBuilder(new ParameterBag($this->getAppParameters())));
+            $this->setContainer(new ContainerBuilder(new EnvPlaceholderParameterBag($this->getContainerParameters())));
             $this->loadContainerConfiguration();
         } else {
             $filename = $this->getContainerCacheFilename();
@@ -444,7 +471,7 @@ class Kernel
                 require_once($filename);
                 $this->setContainer(new CachedContainer());
             } else {
-                $this->setContainer(new ContainerBuilder(new ParameterBag($this->getAppParameters())));
+                $this->setContainer(new ContainerBuilder(new EnvPlaceholderParameterBag($this->getContainerParameters())));
                 $this->loadContainerConfiguration();
                 $this->container->compile();
 
