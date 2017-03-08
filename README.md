@@ -76,7 +76,7 @@ class ConsoleApp extends Kernel
 Default parameters
 ------------------
 
-The kernel sets a number of default parameters that can be used for configuring services. The default values can be changed via setter methods of the kernel or overwritten by the container config files.
+The kernel sets a number of default parameters that can be used for configuring services. The default values can be changed via setter methods of the kernel or overwritten/extended by container config files and [environment variables](http://symfony.com/doc/current/configuration/external_parameters.html).
 
 Parameter           | Getter method         | Setter method         | Default value            
 --------------------|-----------------------|-----------------------|------------------
