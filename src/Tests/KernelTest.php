@@ -59,11 +59,18 @@ class KernelTest extends UnitTestCase
 
     public function testGetContainerParameters()
     {
-        $_SERVER['DIMICROKERNEL_TEST__FOO'] = 'bar';
+        $_SERVER['foo'] = 'bar';
+
+        $_SERVER['app.name'] = 'XXX';
+        $_SERVER['APP__NAME2'] = 'YYY';
 
         $result = $this->kernel->getContainerParameters();
+
         $this->assertInternalType('array', $result);
         $this->assertArrayHasKey('app.name', $result);
+        $this->assertEquals('Kernel', $result['app.name']);
+        $this->assertArrayHasKey('app.name2', $result);
+        $this->assertEquals('YYY', $result['app.name2']);
         $this->assertArrayHasKey('app.version', $result);
         $this->assertArrayHasKey('app.environment', $result);
         $this->assertArrayHasKey('app.sub_environment', $result);
@@ -76,6 +83,7 @@ class KernelTest extends UnitTestCase
         $this->assertArrayHasKey('app.log_path', $result);
         $this->assertArrayHasKey('app.config_path', $result);
         $this->assertArrayHasKey('foo', $result);
+        $this->assertEquals('bar', $result['foo']);
     }
 
     public function testGetContainer()

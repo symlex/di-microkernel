@@ -361,7 +361,7 @@ class Kernel
             'app.src_path' => $this->getSrcPath(),
         );
 
-        $result = array_merge($result, $this->getEnvParameters());
+        $result = array_merge($this->getEnvParameters(), $result);
 
         return $result;
     }
@@ -369,21 +369,14 @@ class Kernel
     /**
      * Returns the environment parameters
      *
-     * Only the parameters starting with "{ENVIRONMENT}__" are considered.
-     *
      * @return array An array of parameters
      */
     protected function getEnvParameters()
     {
         $result = array();
 
-        $prefix = strtoupper($this->getEnvironment()) . '__';
-        $prefixLength = strlen($prefix);
-
         foreach ($_SERVER as $key => $value) {
-            if (0 === strpos($key, $prefix)) {
-                $result[strtolower(str_replace('__', '.', substr($key, $prefixLength)))] = $value;
-            }
+            $result[strtolower(str_replace('__', '.', $key))] = $value;
         }
 
         return $result;
