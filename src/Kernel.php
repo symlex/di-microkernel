@@ -16,17 +16,13 @@ use DIMicroKernel\Exception\Exception;
  * This micro-kernel can be used for bootstrapping almost any PHP application.
  * It can be extended to customize it for a specific purpose, e.g. command line applications.
  *
- * Note: To see a complete framework based on the micro-kernel go to https://github.com/lastzero/symlex
- *
  * @see https://github.com/lastzero/di-microkernel/blob/master/README.md
  * @author Michael Mayer <michael@lastzero.net>
  * @license MIT
  */
 class Kernel
 {
-    /**
-     * @var ContainerBuilder
-     */
+    /** @var ContainerBuilder */
     protected $container;
 
     protected $environment;
@@ -371,7 +367,7 @@ class Kernel
      *
      * @return array An array of parameters
      */
-    protected function getEnvParameters()
+    protected function getEnvParameters(): array
     {
         $result = array();
 
@@ -387,7 +383,7 @@ class Kernel
      *
      * @return string
      */
-    public function getContainerCacheFilename()
+    public function getContainerCacheFilename(): string
     {
         $environment = $this->getEnvironment();
         $appPath = $this->getAppPath();
@@ -402,7 +398,7 @@ class Kernel
      *
      * @return bool
      */
-    public function containerIsCacheable()
+    public function containerIsCacheable(): bool
     {
         $result = true; // container is cacheable by default
 
@@ -440,7 +436,7 @@ class Kernel
      *
      * @return bool
      */
-    protected function hasBooted()
+    protected function hasBooted(): bool
     {
         $result = $this->container instanceof Container;
 
@@ -499,9 +495,10 @@ class Kernel
 
     /**
      * Returns true, if setUp() was not called already
+     *
      * @return bool
      */
-    protected function appIsUninitialized()
+    protected function appIsUninitialized(): bool
     {
         return !$this->appInitialized;
     }
