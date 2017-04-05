@@ -453,6 +453,7 @@ class Kernel
         if ($this->debug) {
             $this->setContainer(new ContainerBuilder(new EnvPlaceholderParameterBag($this->getContainerParameters())));
             $this->loadContainerConfiguration();
+            $this->container->compile();
         } else {
             $filename = $this->getContainerCacheFilename();
 
