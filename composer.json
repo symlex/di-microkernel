@@ -1,5 +1,5 @@
 {
-    "name": "lastzero/di-microkernel",
+    "name": "symlex/di-microkernel",
     "description": "A micro-kernel based on the Symfony service container for bootstrapping almost any PHP application",
     "type": "library",
     "keywords": [
@@ -11,7 +11,7 @@
         "micro-framework"
     ],
     "license": "MIT",
-    "homepage": "https://github.com/lastzero/di-microkernel",
+    "homepage": "https://github.com/symlex/di-microkernel",
     "authors": [
         {
             "name": "Michael Mayer",
