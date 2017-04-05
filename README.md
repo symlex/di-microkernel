@@ -1,14 +1,13 @@
 A micro-kernel for PHP applications
 ===================================
 
-[![Build Status](https://travis-ci.org/lastzero/di-microkernel.png?branch=master)](https://travis-ci.org/lastzero/di-microkernel)
-[![Latest Stable Version](https://poser.pugx.org/lastzero/di-microkernel/v/stable.svg)](https://packagist.org/packages/lastzero/di-microkernel)
-[![Total Downloads](https://poser.pugx.org/lastzero/di-microkernel/downloads.svg)](https://packagist.org/packages/lastzero/di-microkernel)
-[![License](https://poser.pugx.org/lastzero/di-microkernel/license.svg)](https://packagist.org/packages/lastzero/di-microkernel)
+[![Build Status](https://travis-ci.org/symlex/di-microkernel.png?branch=master)](https://travis-ci.org/symlex/di-microkernel)
+[![Latest Stable Version](https://poser.pugx.org/symlex/di-microkernel/v/stable.svg)](https://packagist.org/packages/symlex/di-microkernel)
+[![License](https://poser.pugx.org/symlex/di-microkernel/license.svg)](https://packagist.org/packages/symlex/di-microkernel)
 
 This library contains a micro-kernel for bootstrapping almost any PHP application, including Silex, 
 Symfony Console and Lumen. The kernel itself is just about 400 lines of code to set a bunch of default parameters for
-your application and create a service container instance with that. To see a complete framework based on the micro-kernel please go to https://github.com/lastzero/symlex.
+your application and create a service container instance with that. To see a complete framework based on the micro-kernel please go to https://github.com/symlex/symlex.
 
 Creating a kernel instance and calling `run()` is enough to start your application:
 
@@ -109,10 +108,10 @@ parameters:
 Composer
 --------
 
-If you are using composer, simply add "lastzero/di-microkernel" to your composer.json file and run composer update:
+If you are using composer, simply add "symlex/di-microkernel" to your composer.json file and run composer update:
 
 ```json
 "require": {
-    "lastzero/di-microkernel": "^1.0"
+    "symlex/di-microkernel": "^1.2"
 }
 ```
