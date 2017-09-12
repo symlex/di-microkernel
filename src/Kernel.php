@@ -453,7 +453,7 @@ class Kernel
         if ($this->debug) {
             $this->setContainer(new ContainerBuilder(new EnvPlaceholderParameterBag($this->getContainerParameters())));
             $this->loadContainerConfiguration();
-            $this->container->compile();
+            $this->container->compile(true);
         } else {
             $filename = $this->getContainerCacheFilename();
 
@@ -463,7 +463,7 @@ class Kernel
             } else {
                 $this->setContainer(new ContainerBuilder(new EnvPlaceholderParameterBag($this->getContainerParameters())));
                 $this->loadContainerConfiguration();
-                $this->container->compile();
+                $this->container->compile(true);
 
                 if ($this->containerIsCacheable()) {
                     $dumper = new PhpDumper($this->container);
