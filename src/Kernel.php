@@ -9,7 +9,6 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\DependencyInjection\ParameterBag\EnvPlaceholderParameterBag;
 use Symfony\Component\DependencyInjection\Dumper\PhpDumper;
 use ProjectServiceContainer as CachedContainer;
-use DIMicroKernel\Exception\ContainerNotFoundException;
 use DIMicroKernel\Exception\Exception;
 
 /**
@@ -61,6 +60,7 @@ class Kernel
     /**
      * Executes the app configured as 'app' in the service container
      *
+     * @throws \Exception
      * @return mixed
      */
     public function run()
@@ -74,7 +74,6 @@ class Kernel
      * Returns the container instance (automatically creates an instance, if none exists)
      *
      * @return Container
-     * @throws ContainerNotFoundException
      */
     public function getContainer(): Container
     {
@@ -357,24 +356,6 @@ class Kernel
             'app.src_path' => $this->getSrcPath(),
         );
 
-        $result = array_merge($this->getEnvParameters(), $result);
-
-        return $result;
-    }
-
-    /**
-     * Returns the environment parameters
-     *
-     * @return array An array of parameters
-     */
-    protected function getEnvParameters(): array
-    {
-        $result = array();
-
-        foreach ($_SERVER as $key => $value) {
-            $result[strtolower(str_replace('__', '.', $key))] = $value;
-        }
-
         return $result;
     }
 
@@ -412,6 +393,7 @@ class Kernel
     /**
      * Calls a method of the app service
      *
+     * @throws \Exception
      * @param $name
      * @param $arguments
      * @return mixed
@@ -507,6 +489,7 @@ class Kernel
     /**
      * Returns the app service from the container and calls setUp() once, if not done yet
      *
+     * @throws \Exception
      * @return object
      */
     protected function getApplication()

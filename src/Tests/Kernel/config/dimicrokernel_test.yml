@@ -4,6 +4,7 @@ parameters:
     twig.options:
         cache: '%app.cache_path%'
         auto_reload: true
+    app.name2: '%env(APPLICATION_NAME)%'
 
 services:
     app:

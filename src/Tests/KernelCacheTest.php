@@ -13,6 +13,8 @@ class KernelCacheTest extends TestCase
 {
     public function testCaching()
     {
+        $_SERVER['APPLICATION_NAME'] = 'YYY';
+
         $kernel = new Kernel('dimicrokernel_test', __DIR__ . '/Kernel', false);
         $result = $kernel->getContainer();
         $this->assertInstanceOf('\Symfony\Component\DependencyInjection\Container', $result);

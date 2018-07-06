@@ -59,12 +59,9 @@ class KernelTest extends UnitTestCase
 
     public function testGetContainerParameters()
     {
-        $_SERVER['foo'] = 'bar';
+        $_SERVER['APPLICATION_NAME'] = 'YYY';
 
-        $_SERVER['app.name'] = 'XXX';
-        $_SERVER['APP__NAME2'] = 'YYY';
-
-        $result = $this->kernel->getContainerParameters();
+        $result = $this->kernel->getContainer()->getParameterBag()->all();
 
         $this->assertInternalType('array', $result);
         $this->assertArrayHasKey('app.name', $result);
@@ -82,8 +79,6 @@ class KernelTest extends UnitTestCase
         $this->assertArrayHasKey('app.cache_path', $result);
         $this->assertArrayHasKey('app.log_path', $result);
         $this->assertArrayHasKey('app.config_path', $result);
-        $this->assertArrayHasKey('foo', $result);
-        $this->assertEquals('bar', $result['foo']);
     }
 
     public function testGetContainer()
