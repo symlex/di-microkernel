@@ -112,6 +112,6 @@ If you are using composer, simply add "symlex/di-microkernel" to your composer.j
 
 ```json
 "require": {
-    "symlex/di-microkernel": "^1.2"
+    "symlex/di-microkernel": "^2.0"
 }
 ```
