@@ -77,7 +77,7 @@ Default parameters
 
 The kernel sets a number of default parameters that can be used for configuring services. The default values can be 
 changed via setter methods of the kernel or overwritten/extended by container config files 
-and environment variables in `$_SERVER` (names are converted to lower case and `__` is converted to `.`).
+and environment variables (e.g. `url: '%env(DATABASE_URL)%'`).
 
 Parameter           | Getter method         | Setter method         | Default value            
 --------------------|-----------------------|-----------------------|------------------
