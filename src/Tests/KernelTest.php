@@ -6,7 +6,7 @@ use TestTools\TestCase\UnitTestCase;
 use DIMicroKernel\Kernel;
 
 /**
- * @author Michael Mayer <michael@lastzero.net>
+ * @author Michael Mayer <michael@liquidbytes.net>
  * @license MIT
  */
 class KernelTest extends UnitTestCase

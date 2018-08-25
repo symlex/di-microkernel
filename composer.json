@@ -3,20 +3,22 @@
     "description": "A micro-kernel based on the Symfony service container for bootstrapping almost any PHP application",
     "type": "library",
     "keywords": [
-        "silex",
         "symfony",
-        "lumen",
+        "kernel",
+        "bootstrapping",
         "dependency injection",
         "performance",
-        "micro-framework"
+        "micro-framework",
+        "agile",
+        "lean"
     ],
     "license": "MIT",
     "homepage": "https://github.com/symlex/di-microkernel",
     "authors": [
         {
             "name": "Michael Mayer",
-            "email": "michael@lastzero.net",
-            "homepage": "https://lastzero.net/",
+            "email": "michael@liquidbytes.net",
+            "homepage": "https://liquidbytes.net/",
             "role": "Developer"
         }
     ],

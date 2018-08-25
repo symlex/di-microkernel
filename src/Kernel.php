@@ -15,8 +15,8 @@ use DIMicroKernel\Exception\Exception;
  * This micro-kernel can be used for bootstrapping almost any PHP application.
  * It can be extended to customize it for a specific purpose, e.g. command line applications.
  *
- * @see https://github.com/lastzero/di-microkernel/blob/master/README.md
- * @author Michael Mayer <michael@lastzero.net>
+ * @see https://github.com/symlex/di-microkernel/blob/master/README.md
+ * @author Michael Mayer <michael@liquidbytes.net>
  * @license MIT
  */
 class Kernel

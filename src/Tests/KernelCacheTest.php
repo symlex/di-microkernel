@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use DIMicroKernel\Kernel;
 
 /**
- * @author Michael Mayer <michael@lastzero.net>
+ * @author Michael Mayer <michael@liquidbytes.net>
  * @license MIT
  */
 class KernelCacheTest extends TestCase

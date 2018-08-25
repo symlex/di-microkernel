@@ -41,14 +41,15 @@ services:
         
     app:
         class: Symfony\Component\Console\Application
+        public: true
         arguments: [%app.name%, %app.version%]
         calls:
             - [ add, [ "@doctrine.migrations.migrate" ] ]
 ```
 
-This provides a uniform approach for bootstrapping Web applications like `Silex\Application` or command-line 
-applications like `Symfony\Component\Console\Application` using the same kernel. The result is much cleaner and 
-leaner than the usual bootstrap and configuration madness you know from many frameworks.
+This provides a uniform approach for bootstrapping Web applications like `Silex\Application`,
+`Symlex\Application\Web` or command-line applications like `Symfony\Component\Console\Application` using the same kernel. 
+The result is much cleaner and leaner than the usual bootstrap and configuration madness you know from many frameworks.
 
 The kernel base class can be extended to customize it for a specific purpose such as long running console applications:
 
