@@ -5,9 +5,11 @@ A micro-kernel for PHP applications
 [![Latest Stable Version](https://poser.pugx.org/symlex/di-microkernel/v/stable.svg)](https://packagist.org/packages/symlex/di-microkernel)
 [![License](https://poser.pugx.org/symlex/di-microkernel/license.svg)](https://packagist.org/packages/symlex/di-microkernel)
 
-This library contains a micro-kernel for bootstrapping almost any PHP application, including Silex, 
-Symfony Console and Lumen. The kernel itself is just about 400 lines of code to set a bunch of default parameters for
-your application and create a service container instance with that. To see a complete framework based on the micro-kernel please go to https://github.com/symlex/symlex.
+This library contains a micro-kernel for bootstrapping almost any PHP application, including 
+[Symlex](https://github.com/symlex/symlex) (a complete framework stack for agile Web development based on Symfony and Vue.js), 
+[Silex](https://silex.symfony.com/) and [Symfony Console](https://symfony.com/doc/current/components/console.html). 
+The kernel itself is just about 400 lines of code to set a bunch of default parameters for your application and create a 
+service container instance with that.
 
 Creating a kernel instance and calling `run()` is enough to start your application:
 
