@@ -5,13 +5,13 @@ A micro-kernel for PHP applications
 [![Latest Stable Version](https://poser.pugx.org/symlex/di-microkernel/v/stable.svg)](https://packagist.org/packages/symlex/di-microkernel)
 [![License](https://poser.pugx.org/symlex/di-microkernel/license.svg)](https://packagist.org/packages/symlex/di-microkernel)
 
-This library contains a micro-kernel for bootstrapping almost any PHP application, including 
-[Symlex](https://github.com/symlex/symlex) (a complete framework stack for agile Web development based on Symfony and Vue.js), 
-[Silex](https://silex.symfony.com/) and [Symfony Console](https://symfony.com/doc/current/components/console.html). 
-The kernel itself is just about 400 lines of code to set a bunch of default parameters for your application and create a 
+This library contains a micro-kernel for bootstrapping almost any PHP application, including [Silex](https://silex.symfony.com/),
+[Symlex](https://github.com/symlex/symlex) (a complete framework stack for agile Web development based on Symfony and Vue.js) 
+and [Symfony Console](https://symfony.com/doc/current/components/console.html). 
+The kernel itself is just about 400 lines of code to set a bunch of default parameters and create a 
 service container instance with that.
 
-Creating a kernel instance and calling `run()` is enough to start your application:
+Creating a kernel instance and calling `run()` is enough to start an application:
 
 ```php
 #!/usr/bin/env php
