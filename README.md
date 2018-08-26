@@ -8,8 +8,10 @@ A micro-kernel for PHP applications
 This library contains a micro-kernel for bootstrapping almost any PHP application, including [Silex](https://silex.symfony.com/),
 [Symlex](https://github.com/symlex/symlex) (a complete framework stack for agile Web development based on Symfony and Vue.js) 
 and [Symfony Console](https://symfony.com/doc/current/components/console.html). 
-The kernel itself is just about 400 lines of code to set a bunch of default parameters and create a 
-service container instance with that.
+The kernel itself is just a few lines to set a bunch of default parameters and create a service container 
+instance with that.
+
+![Micro-Kernel Architecture](https://github.com/symlex/symlex/raw/master/docs/img/microkernel.png)
 
 Creating a kernel instance and calling `run()` is enough to start an application:
 
