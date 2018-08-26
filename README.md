@@ -6,9 +6,9 @@ A micro-kernel for PHP applications
 [![License](https://poser.pugx.org/symlex/di-microkernel/license.svg)](https://packagist.org/packages/symlex/di-microkernel)
 
 This library contains a micro-kernel for bootstrapping almost any PHP application, including [Silex](https://silex.symfony.com/),
-[Symlex](https://github.com/symlex/symlex) (a complete framework stack for agile Web development based on Symfony and Vue.js) 
+[Symlex](https://github.com/symlex/symlex) (a framework stack for agile Web development based on Symfony) 
 and [Symfony Console](https://symfony.com/doc/current/components/console.html). 
-The kernel itself is just a few lines to set a bunch of default parameters and create a service container 
+The kernel itself is just a few lines to set a bunch of environment parameters and create a service container 
 instance with that.
 
 ![Micro-Kernel Architecture](https://github.com/symlex/symlex/raw/master/docs/img/microkernel.png)

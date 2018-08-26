@@ -4,6 +4,8 @@ Changelog
 Release 2
 ---------
 
+* 2.0.3 Improved documentation
+
 * 2.0.2 Added changelog and improved documentation
 
 * 2.0.1 Improved documentation
