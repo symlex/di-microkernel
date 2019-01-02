@@ -4,6 +4,8 @@ Changelog
 Release 2
 ---------
 
+* 2.0.4 Tested with latest Symfony and updated docs
+
 * 2.0.3 Improved documentation
 
 * 2.0.2 Added changelog and improved documentation

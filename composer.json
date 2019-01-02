@@ -1,6 +1,6 @@
 {
     "name": "symlex/di-microkernel",
-    "description": "A micro-kernel based on the Symfony service container for bootstrapping almost any PHP application",
+    "description": "Micro-Kernel for PHP Applications",
     "type": "library",
     "keywords": [
         "symfony",
